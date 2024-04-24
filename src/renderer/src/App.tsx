@@ -1,8 +1,18 @@
+import { Sidebar, RootLayout, Content, DraggableTopbar, ActionButtonsRow, NotePreviewList } from '@/components'
+
+
 function App(): JSX.Element {
   return (
-    <div>
-      <h1 className="text-2xl text-red-500">Hello, This is My first Electron Js</h1>
-    </div>
+    <>
+      <DraggableTopbar />
+      <RootLayout>
+        <Sidebar className="p-2">
+          <ActionButtonsRow className="flex justify-between mt-1" />
+          <NotePreviewList className="mt-4 space-y-1" />
+        </Sidebar>
+        <Content className="border-l bg-zinc-900/50 border-l-white/20">Contene</Content>
+      </RootLayout>
+    </>
   )
 }
 
