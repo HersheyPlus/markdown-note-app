@@ -2,6 +2,8 @@ import { app, shell, BrowserWindow, ipcMain } from 'electron'
 import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
+import { getNotes, readNote, writeNote } from './lib'
+import { GetNotes, ReadNote, WriteNote } from '@shared/types'
 
 function createWindow(): void {
   // Create the browser window.
@@ -16,12 +18,12 @@ function createWindow(): void {
     frame: false,
     vibrancy: 'under-window',
     visualEffectState: 'active',
-    titleBarStyle:'hidden',
-    trafficLightPosition: {x:15, y:10},
+    titleBarStyle: 'hidden',
+    trafficLightPosition: { x: 15, y: 10 },
     webPreferences: {
       preload: join(__dirname, '../preload/index.js'),
       sandbox: true,
-      contextIsolation: true,
+      contextIsolation: true
     }
   })
 
@@ -59,6 +61,9 @@ app.whenReady().then(() => {
 
   // IPC test
   ipcMain.on('ping', () => console.log('pong'))
+  ipcMain.handle('getNotes', (_, ...args: Parameters<GetNotes>) => getNotes(...args))
+  ipcMain.handle('readNote', (_, ...args: Parameters<ReadNote>) => readNote(...args))
+  ipcMain.handle('writeNote', (_, ...args: Parameters<WriteNote>) => writeNote(...args))
 
   createWindow()
 
