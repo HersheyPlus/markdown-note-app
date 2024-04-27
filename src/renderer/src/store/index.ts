@@ -2,6 +2,7 @@ import { NoteContent, NoteInfo } from '@shared/models'
 import { atom } from 'jotai'
 import { unwrap } from 'jotai/utils'
 
+// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 const loadNotes = async () => {
   const notes = await window.context.getNotes()
 
@@ -73,7 +74,7 @@ export const deleteNoteAtom = atom(null, async (get, set) => {
 
   if (!selectedNote || !notes) return
   const isDeleted = await window.context.deleteNote(selectedNote.title)
-  if (!isDeleted) return 
+  if (!isDeleted) return
   set(
     notesAtom,
     notes.filter((note) => note.title !== selectedNote.title)
