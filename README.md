@@ -20,3 +20,8 @@ $ yarn
 $ yarn dev
 ```
 
+### Dependencies Setup
+```bash
+$ yarn add -D jotai react-icons tailwind-merge fs-extra clsx lodash @types/lodash @mdxeditor/editor @tailwindcss/typography
+```
+
